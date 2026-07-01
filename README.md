@@ -1,80 +1,163 @@
-# MindFulness_stage : Plateforme de Psychologie & Développement Personnel
+# 🧠 MindFulness Stage – Plateforme de Psychologie & Développement Personnel
 
-🎓 Contexte Académique
-Ce projet est réalisé dans le cadre du module Projet Intégré Développement Web & Java. Il vise à concevoir une plateforme complète permettant l’accompagnement psychologique, le suivi du bien-être des utilisateurs et la gestion des interactions entre patients, psychologues et administrateurs.
+> Une plateforme intelligente dédiée au bien-être mental, au développement personnel et à l'accompagnement psychologique.
 
-🎯 Objectif du Projet
-L’objectif principal est de développer un système numérique permettant :
+---
 
-Le suivi psychologique des utilisateurs
-La gestion de tests psychologiques
-La définition et le suivi d’objectifs personnels
-La consultation de ressources éducatives
-La réservation de consultations
+## 📖 À propos du projet
 
-🏗️ Architecture Générale du Système
-Le système est structuré autour de plusieurs modules principaux :
+**MindFulness Stage** est un projet académique réalisé dans le cadre du module **Projet Intégré – Développement Web & Java**.
 
-👤 Gestion des Utilisateurs
-Permet :
+L'objectif est de concevoir une plateforme complète permettant aux utilisateurs de prendre soin de leur santé mentale grâce à des outils numériques innovants. La plateforme facilite les échanges entre **patients**, **psychologues**, **coachs** et **administrateurs**, tout en offrant un suivi personnalisé du bien-être.
 
-Création et gestion des comptes
-Authentification et sécurité
-Gestion des rôles (Admin, Patient, Psychologue, Coach)
-🧪 Module Tests Psychologiques
+---
+
+## 🎯 Objectifs
+
+Le projet permet notamment de :
+
+* 👤 Gérer les utilisateurs et leurs rôles
+* 🧪 Évaluer l'état psychologique grâce à des tests
+* 🎯 Définir et suivre des objectifs personnels
+* 📚 Consulter des ressources éducatives
+* 📅 Réserver des consultations avec des professionnels
+* 📊 Suivre l'évolution du bien-être des utilisateurs
+
+---
+
+# 🏗️ Architecture du projet
+
+## 👤 Gestion des utilisateurs
+
 Fonctionnalités :
 
-Création de tests
-Passage des tests par les utilisateurs
-Calcul et analyse des résultats
-Génération de rapports
-Types de tests :
+* Création de comptes
+* Authentification sécurisée
+* Gestion des profils
+* Gestion des rôles :
 
-Stress
-Anxiété
-Dépression
-Estime de soi
+  * 👑 Administrateur
+  * 🧑‍⚕️ Psychologue
+  * 🧑‍🏫 Coach
+  * 🙋 Patient
 
-🎯 Module Objectifs Personnels
-Permet :
+---
 
-Définition d’objectifs personnels
-Suivi du progrès
-Mise à jour de l’état des objectifs
-Exemples :
+## 🧪 Module des tests psychologiques
 
-Confiance en soi
-Motivation
-Relaxation
-Équilibre émotionnel
+Ce module permet :
 
-🛠️ Technologies Utilisées
+* Création des tests
+* Passage des tests par les utilisateurs
+* Calcul automatique des résultats
+* Analyse des performances
+* Génération de rapports
 
-🌐 Développement Web
+### Types de tests
 
-. HTML / CSS / JavaScript
+* 😌 Stress
+* 😟 Anxiété
+* 💙 Dépression
+* 🌟 Estime de soi
 
-. Framework Backend (selon choix du groupe)
+---
 
-. MySQL
+## 🎯 Module des objectifs personnels
 
-☕ Développement Java
+Les utilisateurs peuvent :
 
-. JavaFX
+* Définir leurs objectifs
+* Suivre leur progression
+* Modifier leur état d'avancement
+* Visualiser leurs performances
 
-. JDBC
+### Exemples d'objectifs
 
-. Scene Builder
+* 💪 Renforcer la confiance en soi
+* 🚀 Développer la motivation
+* 🧘 Réduire le stress
+* ❤️ Améliorer l'équilibre émotionnel
 
-🗄️ Base de Données
+---
 
-. Modélisation UML
+## 🛠️ Technologies utilisées
 
-. Conception relationnelle
+### 🌐 Développement Web
 
-⚙️ Installation
+* HTML5
+* CSS3
+* JavaScript
+* Framework Backend *(à définir selon l'équipe)*
+* MySQL
 
-Cloner le projet
+### ☕
 
+Développement Java
+
+* Java
+* JavaFX
+* JDBC
+* Scene Builder
+
+### 🗄️ Base de données
+
+* UML
+* Modèle relationnel
+* MySQL
+
+---
+
+## 🚀 Installation
+
+### 1️⃣ Cloner le projet
+
+```bash
 git clone https://github.com/chaffaiichrak/MindFulness_stage.git
+```
 
+### 2️⃣ Accéder au dossier
+
+```bash
+cd MindFulness_stage
+```
+
+### 3️⃣ Configurer la base de données
+
+* Importer le fichier SQL.
+* Configurer les paramètres de connexion dans le projet.
+
+### 4️⃣ Lancer le projet
+
+* Ouvrir le projet dans votre IDE préféré.
+* Compiler puis exécuter l'application.
+
+---
+
+## 👥 Équipe
+
+Projet réalisé dans le cadre du module **Projet Intégré – Développement Web & Java**.
+
+---
+
+## 📌 Fonctionnalités principales
+
+* ✅ Gestion des utilisateurs
+* ✅ Authentification sécurisée
+* ✅ Tests psychologiques
+* ✅ Objectifs personnels
+* ✅ Ressources éducatives
+* ✅ Réservation de consultations
+* ✅ Tableau de bord
+* ✅ Suivi du bien-être
+
+---
+
+## 🌱 Vision
+
+Notre ambition est de proposer une plateforme moderne, intuitive et sécurisée qui contribue au bien-être psychologique tout en facilitant l'accompagnement des utilisateurs par des professionnels.
+
+---
+
+## 📄 Licence
+
+Projet académique réalisé à des fins pédagogiques.
