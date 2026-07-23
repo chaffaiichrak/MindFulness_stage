@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true"
+            style="-fx-background-color:#F0F4F8; -fx-background:#F0F4F8;"
+            styleClass="content-scroll"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.DashboardHomeController">
+
+    <VBox spacing="20" styleClass="content-pane">
+
+        <HBox alignment="CENTER_LEFT" spacing="0" styleClass="welcome-card">
+            <VBox spacing="7" HBox.hgrow="ALWAYS">
+                <Label fx:id="welcomeLabel" styleClass="welcome-title" text="Bonjour" />
+                <Label styleClass="welcome-sub"
+                       text="Tableau de bord MindFullness — Vue d'ensemble en temps réel"
+                       wrapText="true" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="3">
+                <Label fx:id="dateLabel"
+                       style="-fx-text-fill:rgba(255,255,255,0.7); -fx-font-size:11px;"
+                       text="" />
+            </VBox>
+        </HBox>
+
+
+        <Label styleClass="section-title" text="Statistiques Utilisateurs" />
+        <HBox spacing="14">
+            <VBox spacing="10" styleClass="stat-card stat-card-blue" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="14">
+                    <StackPane styleClass="stat-icon-bg-blue"><Label styleClass="stat-icon" text="👥" /></StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label fx:id="totalUsersLabel" styleClass="stat-value" text="0" />
+                        <Label styleClass="stat-label" text="Utilisateurs total" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox spacing="10" styleClass="stat-card stat-card-green" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="14">
+                    <StackPane styleClass="stat-icon-bg-green"><Label styleClass="stat-icon" text="✅" /></StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label fx:id="actifsLabel" styleClass="stat-value" text="0" />
+                        <Label styleClass="stat-label" text="Comptes actifs" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox spacing="10" styleClass="stat-card stat-card-red" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="14">
+                    <StackPane styleClass="stat-icon-bg-red"><Label styleClass="stat-icon" text="⛔" /></StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label fx:id="inactifsLabel" styleClass="stat-value" text="0" />
+                        <Label styleClass="stat-label" text="Comptes inactifs" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox spacing="10" styleClass="stat-card stat-card-purple" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="14">
+                    <StackPane styleClass="stat-icon-bg-purple"><Label styleClass="stat-icon" text="🔑" /></StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label fx:id="adminsLabel" styleClass="stat-value" text="0" />
+                        <Label styleClass="stat-label" text="Administrateurs" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="14">
+            <!-- PieChart JavaFX — injecté dynamiquement dans rolesChartBox -->
+            <VBox spacing="10" style="-fx-padding:18 22;" styleClass="table-card" HBox.hgrow="ALWAYS">
+                <Label styleClass="form-section-label" text="Répartition par rôle" />
+                <VBox fx:id="rolesChartBox" spacing="0" VBox.vgrow="ALWAYS" />
+            </VBox>
+
+            <!-- Table 5 derniers inscrits -->
+            <VBox spacing="14" style="-fx-padding:18 22;" styleClass="table-card" HBox.hgrow="ALWAYS">
+                <Label styleClass="form-section-label" text="Derniers inscrits" />
+                <TableView fx:id="recentUsersTable" fixedCellSize="42" prefHeight="220"
+                           styleClass="custom-table">
+                    <columns>
+                        <TableColumn fx:id="colUserNom"    prefWidth="165" text="Nom complet" />
+                        <TableColumn fx:id="colUserEmail"  prefWidth="190" text="Email" />
+                        <TableColumn fx:id="colUserRole"   prefWidth="105" text="Rôle" />
+                        <TableColumn fx:id="colUserStatut" prefWidth="85"  text="Statut" />
+                    </columns>
+                    <placeholder>
+                        <VBox alignment="CENTER">
+                            <Label style="-fx-text-fill:#CBD5E1;" text="Aucun utilisateur" />
+                        </VBox>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="0">
+            <Label styleClass="section-title" text="Historique de Connexion" HBox.hgrow="ALWAYS" />
+            <Label fx:id="connexionCountLabel"
+                   style="-fx-text-fill:#95A3B0; -fx-font-size:12px; -fx-padding:0 0 0 8;"
+                   text="" />
+        </HBox>
+        <VBox spacing="0" styleClass="table-card">
+            <HBox alignment="CENTER_LEFT" styleClass="table-card-header">
+                <Label styleClass="table-card-title" text="50 dernières connexions" HBox.hgrow="ALWAYS" />
+                <Label style="-fx-text-fill:#95A3B0; -fx-font-size:11px;"
+                       text="Mis à jour à chaque démarrage" />
+            </HBox>
+            <TableView fx:id="connexionTable" fixedCellSize="46" prefHeight="260"
+                       styleClass="custom-table">
+                <columns>
+                    <TableColumn fx:id="colCxNom"    prefWidth="195" text="Utilisateur" />
+                    <TableColumn fx:id="colCxEmail"  prefWidth="210" text="Email" />
+                    <TableColumn fx:id="colCxRole"   prefWidth="115" text="Rôle" />
+                    <TableColumn fx:id="colCxDate"   prefWidth="180" text="Date / Heure" />
+                    <TableColumn fx:id="colCxStatut" prefWidth="100" text="Statut" />
+                </columns>
+                <placeholder>
+                    <VBox alignment="CENTER" spacing="8">
+                        <Label styleClass="empty-text" text="Aucune connexion enregistrée" />
+                    </VBox>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

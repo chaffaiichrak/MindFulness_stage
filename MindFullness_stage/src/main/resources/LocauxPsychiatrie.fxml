@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controllers.LocauxPsychiatrieController"
+           prefWidth="1200" prefHeight="720"
+           style="-fx-background-color:#F0F4F8;">
+
+    <!-- Cercles décoratifs fond -->
+    <StackPane mouseTransparent="true">
+        <Circle radius="360" fill="rgba(27,67,50,0.04)"
+                StackPane.alignment="TOP_LEFT" translateX="-130" translateY="-90"/>
+        <Circle radius="260" fill="rgba(123,94,167,0.04)"
+                StackPane.alignment="BOTTOM_RIGHT" translateX="110" translateY="90"/>
+    </StackPane>
+
+    <VBox spacing="0" StackPane.alignment="TOP_CENTER">
+
+        <!-- ══════════════════════════════ NAVBAR ══════════════════════════════ -->
+        <HBox fx:id="navbar" alignment="CENTER_LEFT" spacing="16"
+              style="-fx-background-color:#1B4332;
+                     -fx-border-color:#2D6A4F; -fx-border-width:0 0 1.5 0;
+                     -fx-padding:0 36 0 36;
+                     -fx-min-height:66; -fx-pref-height:66;
+                     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.22),14,0,0,4);">
+
+            <Button fx:id="backButton" onAction="#goBack"
+                    style="-fx-background-color:rgba(255,255,255,0.12); -fx-text-fill:#FFFFFF;
+                           -fx-font-size:12px; -fx-font-weight:700; -fx-background-radius:20;
+                           -fx-padding:7 16 7 14; -fx-cursor:hand; -fx-border-color:rgba(187,247,208,0.4);
+                           -fx-border-radius:20; -fx-border-width:1;">
+                <graphic>
+                    <HBox spacing="6" alignment="CENTER">
+                        <FontIcon iconLiteral="fas-arrow-left" iconSize="12" iconColor="#BBF7D0"/>
+                        <Label text="Accueil" style="-fx-text-fill:#FFFFFF; -fx-font-size:12px; -fx-font-weight:700;"/>
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <HBox alignment="CENTER_LEFT" spacing="9">
+                <ImageView fitWidth="30" fitHeight="30" preserveRatio="true">
+                    <image><Image url="@logo.png" backgroundLoading="true"/></image>
+                </ImageView>
+                <HBox spacing="0">
+                    <Label text="Mind" style="-fx-text-fill:#FFFFFF; -fx-font-size:18px; -fx-font-weight:900; -fx-font-family:'Georgia';"/>
+                    <Label text="Aura" style="-fx-text-fill:#BBF7D0; -fx-font-size:18px; -fx-font-weight:900; -fx-font-family:'Georgia';"/>
+                </HBox>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="LOCAUX PSYCHIATRIQUES"
+                   style="-fx-text-fill:#BBF7D0; -fx-font-size:11px; -fx-font-weight:800;"/>
+        </HBox>
+
+        <!-- ══════════════════════════ ZONE SCROLLABLE ══════════════════════════ -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    VBox.vgrow="ALWAYS"
+                    style="-fx-background-color:transparent; -fx-background:transparent; -fx-border-color:transparent;">
+            <VBox spacing="0">
+
+                <!-- ═══════════════════ EN-TETE ═══════════════════ -->
+                <VBox alignment="CENTER" spacing="14"
+                      style="-fx-padding:48 80 34 80;
+                             -fx-background-color:linear-gradient(to bottom, rgba(27,67,50,0.05), rgba(240,244,248,1));
+                             -fx-border-color:#E2E8F0; -fx-border-width:0 0 1.5 0;">
+                    <Label text="NOS ETABLISSEMENTS"
+                           style="-fx-text-fill:#1B4332; -fx-font-size:10px; -fx-font-weight:800;
+                                  -fx-background-color:#D1FAE5; -fx-background-radius:20; -fx-padding:5 18 5 18;
+                                  -fx-border-color:#BBF7D0; -fx-border-radius:20; -fx-border-width:1;"/>
+                    <Label text="Trouvez votre local psychiatrique"
+                           style="-fx-text-fill:#1A1A2E; -fx-font-size:30px; -fx-font-weight:900; -fx-font-family:'Georgia';"/>
+                    <Label text="Cliniques, cabinets et centres agrees — reservez en quelques clics"
+                           style="-fx-text-fill:#5A6475; -fx-font-size:13.5px;"/>
+
+                    <!-- Barre de recherche + filtres -->
+                    <HBox spacing="14" alignment="CENTER" style="-fx-padding:18 0 0 0;">
+                        <HBox alignment="CENTER_LEFT" spacing="8"
+                              style="-fx-background-color:#FFFFFF; -fx-background-radius:14;
+                                     -fx-border-color:#E2E8F0; -fx-border-radius:14; -fx-border-width:1.5;
+                                     -fx-padding:9 16 9 16; -fx-min-width:280;
+                                     -fx-effect:dropshadow(gaussian,rgba(27,67,50,0.06),8,0,0,2);">
+                            <FontIcon iconLiteral="fas-search" iconSize="13" iconColor="#5A6475"/>
+                            <TextField fx:id="searchField" promptText="Rechercher un nom, une ville..."
+                                       style="-fx-background-color:transparent; -fx-border-color:transparent;
+                                              -fx-font-size:12.5px; -fx-pref-width:220;"/>
+                        </HBox>
+
+                        <ComboBox fx:id="typeFilterCombo" promptText="Type d'etablissement"
+                                  style="-fx-background-color:#FFFFFF; -fx-background-radius:14;
+                                         -fx-border-color:#E2E8F0; -fx-border-radius:14; -fx-border-width:1.5;
+                                         -fx-font-size:12px; -fx-pref-width:190;"/>
+
+                        <ComboBox fx:id="villeFilterCombo" promptText="Ville"
+                                  style="-fx-background-color:#FFFFFF; -fx-background-radius:14;
+                                         -fx-border-color:#E2E8F0; -fx-border-radius:14; -fx-border-width:1.5;
+                                         -fx-font-size:12px; -fx-pref-width:150;"/>
+
+                        <Button text="Reinitialiser" onAction="#resetFilters"
+                                style="-fx-background-color:#1B4332; -fx-text-fill:#FFFFFF;
+                                       -fx-font-size:12px; -fx-font-weight:700; -fx-background-radius:14;
+                                       -fx-padding:9 18 9 18; -fx-cursor:hand; -fx-border-color:transparent;"/>
+                    </HBox>
+
+                    <Label fx:id="resultsCountLabel" text=""
+                           style="-fx-text-fill:#7B5EA7; -fx-font-size:12px; -fx-font-weight:700; -fx-padding:6 0 0 0;"/>
+                </VBox>
+
+                <!-- ═══════════════════ GRILLE DES LOCAUX ═══════════════════ -->
+                <StackPane style="-fx-padding:38 60 60 60;">
+                    <FlowPane fx:id="cardsContainer" hgap="22" vgap="26" alignment="CENTER"
+                              prefWrapLength="1080"/>
+
+                    <VBox fx:id="emptyStateBox" alignment="CENTER" spacing="10" visible="false" managed="false"
+                          style="-fx-padding:60 0 60 0;">
+                        <FontIcon iconLiteral="fas-clinic-medical" iconSize="42" iconColor="#CBD5E1"/>
+                        <Label text="Aucun local ne correspond a votre recherche"
+                               style="-fx-text-fill:#5A6475; -fx-font-size:14px; -fx-font-weight:700;"/>
+                        <Label text="Essayez de modifier vos filtres"
+                               style="-fx-text-fill:#94A3B8; -fx-font-size:12px;"/>
+                    </VBox>
+
+                    <VBox fx:id="loadingBox" alignment="CENTER" spacing="10" visible="false" managed="false"
+                          style="-fx-padding:60 0 60 0;">
+                        <ProgressIndicator style="-fx-pref-width:36; -fx-pref-height:36;"/>
+                        <Label text="Chargement des locaux..." style="-fx-text-fill:#5A6475; -fx-font-size:12.5px;"/>
+                    </VBox>
+                </StackPane>
+
+            </VBox>
+        </ScrollPane>
+    </VBox>
+</StackPane>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.DashboardController"
+            prefWidth="1200" prefHeight="720"
+            styleClass="app-container"
+            style="-fx-background-color: #F2F5F9;">
+
+    <!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar">
+
+            <!-- Logo -->
+            <VBox styleClass="sidebar-logo-pane" alignment="CENTER" spacing="3">
+                <ImageView fitWidth="130" fitHeight="130" preserveRatio="true">
+                    <image>
+                        <Image url="@logo.png" backgroundLoading="true"/>
+                    </image>
+                </ImageView>
+                <Label text="MindFullness" styleClass="sidebar-app-name"/>
+                <Label text="PSYCHOLOGIE &amp; DEV. PERSONNEL" styleClass="sidebar-app-tagline"/>
+            </VBox>
+
+            <!-- Menu principal -->
+            <Label text="NAVIGATION" styleClass="sidebar-section-label"/>
+
+            <Button fx:id="btnDashboard"
+                    text="📊  Tableau de Bord"
+                    styleClass="sidebar-btn, sidebar-btn-active"
+                    onAction="#showDashboard"/>
+
+            <!-- Séparateur -->
+            <Label text="GESTION" styleClass="sidebar-section-label"/>
+
+            <Button fx:id="btnUtilisateurs"
+                    text="👥  Utilisateurs"
+                    styleClass="sidebar-btn"
+                    onAction="#showUtilisateurs"/>
+
+            <Button fx:id="btnLocauxPsychiatrie"
+                    text="🏥  Locaux Psychiatrie"
+                    styleClass="sidebar-btn"
+                    onAction="#showLocauxPsychiatrie"/>
+
+
+            <!-- Espace flexible -->
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Séparateur bas -->
+            <Separator style="-fx-background-color: rgba(255,255,255,0.08);"/>
+
+            <!-- Infos utilisateur connecté -->
+            <HBox fx:id="userPanel" styleClass="sidebar-user-pane"
+                  alignment="CENTER_LEFT" spacing="10">
+                <!-- Avatar -->
+                <StackPane fx:id="avatarPane" styleClass="avatar" minWidth="36" minHeight="36">
+                    <ImageView fx:id="avatarImageView"
+                               fitWidth="36" fitHeight="36"
+                               preserveRatio="false"
+                               visible="false">
+                        <clip>
+                            <javafx.scene.shape.Circle centerX="18" centerY="18" radius="18"/>
+                        </clip>
+                    </ImageView>
+                    <Label fx:id="avatarLabel" text="?" styleClass="avatar-text"/>
+                </StackPane>
+                <VBox spacing="1" HBox.hgrow="ALWAYS">
+                    <Label fx:id="userNameLabel"  text="Utilisateur"    styleClass="sidebar-user-name"/>
+                    <Label fx:id="userRoleLabel"  text="Administrateur" styleClass="sidebar-user-role"/>
+                </VBox>
+                <!-- Bouton déconnexion -->
+                <Button fx:id="logoutBtn"
+                        text="⏻"
+                        styleClass="btn-logout-icon"
+                        onAction="#handleLogout">
+                    <tooltip><Tooltip text="Se déconnecter"/></tooltip>
+                </Button>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- ═══════════════════════════ CONTENU PRINCIPAL ═════════════════════════ -->
+    <center>
+        <VBox style="-fx-background-color: #F2F5F9;">
+
+            <!-- Topbar -->
+            <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="0">
+                <VBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="1">
+                    <Label fx:id="topbarTitle"    text="Tableau de Bord"          styleClass="topbar-title"/>
+                    <Label fx:id="topbarSubtitle" text="Bienvenue sur MindFullness Admin" styleClass="topbar-subtitle"/>
+                </VBox>
+
+                <!-- ══════════ WIDGET MÉTÉO (remplace topbarDate) ══════════ -->
+                <HBox fx:id="weatherWidget" alignment="CENTER" spacing="8"
+                      style="-fx-background-color: rgba(27,67,50,0.07);
+                             -fx-background-radius: 12;
+                             -fx-padding: 7 16 7 12;
+                             -fx-cursor: hand;">
+
+                    <!-- Icône météo (emoji mis à jour dynamiquement) -->
+                    <Label fx:id="weatherIcon" text="🌤"
+                           style="-fx-font-size: 22px;"/>
+
+                    <!-- Infos météo : température + description -->
+                    <VBox spacing="0" alignment="CENTER_LEFT">
+                        <Label fx:id="weatherTempLabel" text="--°C"
+                               style="-fx-font-size: 16px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #1A1A2E;"/>
+                        <Label fx:id="weatherDescLabel" text="Chargement..."
+                               style="-fx-font-size: 10px;
+                                      -fx-text-fill: #5A6475;"/>
+                    </VBox>
+
+                    <!-- Séparateur vertical -->
+                    <Separator orientation="VERTICAL"
+                               style="-fx-background-color: rgba(0,0,0,0.10);"
+                               prefHeight="28"/>
+
+                    <!-- Ville + heure -->
+                    <VBox spacing="0" alignment="CENTER_LEFT">
+                        <Label fx:id="weatherCityLabel" text="Tunis"
+                               style="-fx-font-size: 11px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #1B4332;"/>
+                        <Label fx:id="topbarDate" text=""
+                               style="-fx-font-size: 10px;
+                                      -fx-text-fill: #95A3B0;"/>
+                    </VBox>
+                </HBox>
+                <!-- ══════════ FIN WIDGET MÉTÉO ══════════ -->
+
+            </HBox>
+
+            <!-- Zone de contenu dynamique -->
+            <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: #F2F5F9;"/>
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.ListeLocauxController"
+      style="-fx-background-color:#F0F4F8;" spacing="0">
+
+    <!-- ═══════════════ EN-TÊTE PAGE ═══════════════ -->
+    <HBox style="-fx-padding:20 28 14 28;" alignment="CENTER_LEFT" spacing="0">
+        <VBox HBox.hgrow="ALWAYS" spacing="3">
+            <Label text="Gestion des Locaux Psychiatriques" styleClass="section-title"/>
+            <Label text="Recherchez, filtrez, triez et gerez vos etablissements" styleClass="section-subtitle"/>
+        </VBox>
+        <Button text="＋  Nouveau local" styleClass="btn-add-primary" onAction="#handleAjouter"/>
+    </HBox>
+
+    <HBox style="-fx-padding:0 28 14 28; -fx-background-color:#F0F4F8;" spacing="10" alignment="CENTER_LEFT">
+
+        <TextField fx:id="searchField"
+                   promptText="🔍  Rechercher par nom, ville, adresse..."
+                   styleClass="search-box"
+                   onKeyReleased="#handleSearch"
+                   HBox.hgrow="ALWAYS"
+                   style="-fx-max-width:300;"/>
+
+        <ComboBox fx:id="filterType" styleClass="form-combo"
+                  style="-fx-pref-width:190;" promptText="Type"/>
+
+        <ComboBox fx:id="filterVille" styleClass="form-combo"
+                  style="-fx-pref-width:140;" promptText="Ville"/>
+
+        <ComboBox fx:id="filterDispo" styleClass="form-combo"
+                  style="-fx-pref-width:140;" promptText="Disponibilite"/>
+
+        <ComboBox fx:id="sortCombo" styleClass="form-combo"
+                  style="-fx-pref-width:170;" promptText="Trier par"/>
+
+        <Button text="↺  Reinitialiser" styleClass="btn-filter" onAction="#handleResetFilters">
+            <tooltip><Tooltip text="Effacer tous les filtres"/></tooltip>
+        </Button>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="📊  CSV" styleClass="btn-export-csv" onAction="#handleExportCSV">
+            <tooltip><Tooltip text="Exporter en CSV (Excel)"/></tooltip>
+        </Button>
+        <Button text="📄  PDF" styleClass="btn-export-pdf" onAction="#handleExportPDF">
+            <tooltip><Tooltip text="Exporter en PDF (via navigateur)"/></tooltip>
+        </Button>
+    </HBox>
+
+    <!-- ═══════════════ TABLE CARD ═══════════════ -->
+    <VBox style="-fx-padding:0 28 0 28;" VBox.vgrow="ALWAYS" spacing="0">
+        <VBox styleClass="table-card" VBox.vgrow="ALWAYS" spacing="0">
+
+            <HBox styleClass="table-card-header" alignment="CENTER_LEFT" spacing="0">
+                <HBox spacing="8" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                    <Label text="Liste des locaux" styleClass="table-card-title"/>
+                    <Label fx:id="countLabel" text="(0 locaux)"
+                           style="-fx-text-fill:#95A3B0; -fx-font-size:12px;"/>
+                </HBox>
+            </HBox>
+
+            <TableView fx:id="locauxTable" styleClass="custom-table"
+                       VBox.vgrow="ALWAYS" fixedCellSize="56">
+                <columns>
+                    <TableColumn fx:id="colPhoto"     text="Photo"         prefWidth="64"/>
+                    <TableColumn fx:id="colNom"       text="Nom"           prefWidth="160"/>
+                    <TableColumn fx:id="colType"      text="Type"          prefWidth="150"/>
+                    <TableColumn fx:id="colVille"     text="Ville"         prefWidth="110"/>
+                    <TableColumn fx:id="colCapacite"  text="Capacite"      prefWidth="80"/>
+                    <TableColumn fx:id="colTelephone" text="Telephone"     prefWidth="110"/>
+                    <TableColumn fx:id="colDispo"     text="Disponibilite" prefWidth="115"/>
+                    <TableColumn fx:id="colActions"   text="Actions"       prefWidth="150"/>
+                </columns>
+                <placeholder>
+                    <VBox alignment="CENTER" spacing="12" style="-fx-padding:50;">
+                        <Label text="Aucun local trouve" styleClass="empty-text"/>
+                        <Label text="Modifiez vos criteres de recherche"
+                               style="-fx-text-fill:#CBD5E1; -fx-font-size:12px;"/>
+                    </VBox>
+                </placeholder>
+            </TableView>
+
+            <HBox styleClass="pagination-box" alignment="CENTER" spacing="6">
+                <Label fx:id="pageInfoLabel" text="Page 1 / 1" styleClass="page-info-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox fx:id="paginationBox" spacing="4" alignment="CENTER"/>
+            </HBox>
+
+        </VBox>
+    </VBox>
+
+    <Region style="-fx-pref-height:20; -fx-min-height:20;"/>
+</VBox>

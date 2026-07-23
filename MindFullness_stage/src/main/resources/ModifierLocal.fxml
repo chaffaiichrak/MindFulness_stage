@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.ModifierLocalController"
+      spacing="0"
+      style="-fx-background-color:#F2F5F9; -fx-pref-width:680;">
+
+    <!-- ═══════════════ EN-TÊTE ═══════════════ -->
+    <HBox style="-fx-background-color:#FFFFFF; -fx-padding:18 24 18 24;
+                 -fx-border-color:transparent transparent #EDF1F5 transparent; -fx-border-width:0 0 1 0;"
+          alignment="CENTER_LEFT" spacing="12">
+        <StackPane style="-fx-background-color:linear-gradient(to bottom right,#40916C,#1B4332);
+                          -fx-background-radius:50; -fx-min-width:38; -fx-min-height:38;
+                          -fx-pref-width:38; -fx-pref-height:38;
+                          -fx-effect:dropshadow(gaussian,rgba(27,67,50,0.30),8,0,0,2);">
+            <Label text="✎" style="-fx-font-size:16px; -fx-text-fill:#FFFFFF; -fx-font-weight:bold;"/>
+        </StackPane>
+        <VBox spacing="2" HBox.hgrow="ALWAYS">
+            <Label text="Modifier le local"
+                   style="-fx-font-size:17px; -fx-font-weight:bold; -fx-text-fill:#1A2E3D;"/>
+            <Label text="Modifier les informations de l'etablissement"
+                   style="-fx-font-size:11px; -fx-text-fill:#7A96A8;"/>
+        </VBox>
+        <Label fx:id="headerNomLabel" text=""
+               style="-fx-text-fill:#1A2E3D; -fx-font-size:13px; -fx-font-weight:bold;"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background:transparent; -fx-background-color:transparent;">
+        <VBox spacing="16" style="-fx-padding: 20 24 20 24;">
+
+            <!-- ═══ PHOTO ═══ -->
+            <VBox styleClass="form-card" spacing="12">
+                <Label text="Photo de l'etablissement" styleClass="form-section-label"/>
+                <HBox alignment="CENTER_LEFT" spacing="20">
+                    <StackPane fx:id="photoPreviewPane"
+                               style="-fx-min-width:90; -fx-min-height:90; -fx-pref-width:90; -fx-pref-height:90;">
+                        <StackPane fx:id="photoPlaceholder"
+                                   style="-fx-background-color:linear-gradient(to bottom right,#2D6A4F,#1B4332);
+                                          -fx-background-radius:16; -fx-min-width:90; -fx-min-height:90;
+                                          -fx-pref-width:90; -fx-pref-height:90;
+                                          -fx-effect:dropshadow(gaussian,rgba(27,67,50,0.30),10,0,0,3);">
+                            <Label fx:id="photoPlaceholderIcon" text="🏥" style="-fx-font-size:32px;"/>
+                        </StackPane>
+                        <ImageView fx:id="photoImageView" fitWidth="90" fitHeight="90"
+                                   preserveRatio="false" visible="false"/>
+                    </StackPane>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label fx:id="photoNameLabel" text="Photo actuelle"
+                               style="-fx-text-fill:#8BAABA; -fx-font-size:12px;" wrapText="true"/>
+                        <HBox spacing="8">
+                            <Button text="📷  Changer la photo" styleClass="btn-change-photo"
+                                    onAction="#handleChoosePhoto"/>
+                            <Button fx:id="btnRemovePhoto" text="✕  Supprimer" styleClass="btn-danger"
+                                    style="-fx-font-size:11px; -fx-padding:6 12 6 12;"
+                                    onAction="#handleRemovePhoto" visible="false" managed="false"/>
+                        </HBox>
+                        <Label text="Formats acceptes : JPG, PNG, GIF — Max 5 MB"
+                               style="-fx-text-fill:#AABCC8; -fx-font-size:10px;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- ═══ INFORMATIONS GENERALES ═══ -->
+            <VBox styleClass="form-card" spacing="14">
+                <Label text="Informations generales" styleClass="form-section-label"/>
+
+                <HBox spacing="14">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Nom de l'etablissement *" styleClass="form-label"/>
+                        <TextField fx:id="fieldNom" promptText="Ex : Clinique Al Amen" styleClass="form-field"/>
+                        <Label fx:id="errNom" text="" styleClass="error-label"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Type d'etablissement *" styleClass="form-label"/>
+                        <ComboBox fx:id="fieldType" styleClass="form-combo" maxWidth="Infinity"/>
+                        <Label fx:id="errType" text="" styleClass="error-label"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="14">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Adresse *" styleClass="form-label"/>
+                        <TextField fx:id="fieldAdresse" promptText="Rue, numero..." styleClass="form-field"/>
+                        <Label fx:id="errAdresse" text="" styleClass="error-label"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Ville *" styleClass="form-label"/>
+                        <TextField fx:id="fieldVille" promptText="Ex : Tunis" styleClass="form-field"/>
+                        <Label fx:id="errVille" text="" styleClass="error-label"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="14">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Capacite (places) *" styleClass="form-label"/>
+                        <TextField fx:id="fieldCapacite" promptText="Ex : 20" styleClass="form-field"/>
+                        <Label fx:id="errCapacite" text="" styleClass="error-label"/>
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Telephone *" styleClass="form-label"/>
+                        <TextField fx:id="fieldTelephone" promptText="Ex : 71234567" styleClass="form-field"/>
+                        <Label fx:id="errTelephone" text="" styleClass="error-label"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="14">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Disponibilite *" styleClass="form-label"/>
+                        <ComboBox fx:id="fieldDisponibilite" styleClass="form-combo" maxWidth="Infinity"/>
+                        <Label fx:id="errDisponibilite" text="" styleClass="error-label"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+
+            <!-- ═══ DESCRIPTION ═══ -->
+            <VBox styleClass="form-card" spacing="10">
+                <Label text="Description" styleClass="form-section-label"/>
+                <TextArea fx:id="fieldDescription" promptText="Presentation de l'etablissement, specialites..."
+                          styleClass="form-textarea" prefHeight="80" wrapText="true"/>
+            </VBox>
+
+            <Label fx:id="errGlobal" text="" styleClass="error-label"
+                   style="-fx-font-weight:bold; -fx-font-size:12px;"/>
+
+            <HBox spacing="12" alignment="CENTER_RIGHT" style="-fx-padding:4 0 12 0;">
+                <Button text="✕  Annuler" styleClass="btn-secondary" onAction="#handleAnnuler"
+                        prefHeight="40"/>
+                <Button text="✔  Enregistrer les modifications" styleClass="btn-primary" onAction="#handleSave"
+                        prefHeight="40"/>
+            </HBox>
+
+        </VBox>
+    </ScrollPane>
+</VBox>
